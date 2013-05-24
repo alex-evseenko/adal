@@ -22,18 +22,18 @@ class Container(components: List[Component]) {
     tx
   }
 
-  /*
-  	 * Get the named component from the container
-  	 */
+  /**
+   * Get the named component from the container
+   */
   def apply(name: String): Component =
     if (components.exists(c => c.name == name))
       components.filter(c => c.name == name)(0)
     else
       throw new java.util.NoSuchElementException(name)
 
-  /*
-  	 * Get the n-th component from the container
-  	 */
+  /**
+   * Get the n-th component from the container
+   */
   def apply(n: Int): Component = components(n)
 
   def onDataReceived: Unit = ()
