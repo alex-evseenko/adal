@@ -31,9 +31,11 @@ class Dataflow {
     this
   }
 
+  def isConnected = (src.isDefined && dst.isDefined)
+
   def doSend(transform: Transform): Boolean = {
     // check end-points
-    require(src.isDefined && dst.isDefined, "The dataflow endpoints are not defoned")
+    require(isConnected, "The dataflow endpoints are not defoned")
 
     // propagates data
     val result = transform(src.get, dst.get)

@@ -12,8 +12,10 @@ package com.adal
  */
 class Component(val name: String) {
   var value: Option[Any] = None
-  def <<(optValue: Option[Any]): Unit = { value = optValue }
-  def <<(tx: Component): Unit = { value = tx.value }
-  def >>(rx: Component): Unit = { rx << value }
+
+  def <<(optValue: Option[Any]): Component = { value = optValue; this }
+  def <<(tx: Component): Component = { value = tx.value; this }
+  def >>(rx: Component): Component = { rx << value; this }
+
   override def toString = "(" + name + "," + value + ")"
 }
