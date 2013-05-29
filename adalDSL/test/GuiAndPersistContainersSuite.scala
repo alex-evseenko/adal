@@ -60,22 +60,22 @@ class GuiAndPersistContainersSuite extends FunSuite {
       src(landmark) >> dst(landmark)
       src(address)  >> dst(address)
       val ll = src(longAndLat).value.get.asInstanceOf[String].split(",")
-      dst("longitude") << Option(ll(0).toDouble)
-      dst("latitude") << Option(ll(1).toDouble)
+      dst(longitude) << Option(ll(0).toDouble)
+      dst(latitude) << Option(ll(1).toDouble)
       true
     })
 
-    assert(dst("landmark").value.get === landmarkValue)
-    assert(dst("address").value.get === addressValue)
-    assert(dst("longitude").value.get === longValue)
-    assert(dst("latitude").value.get === latValue)
+    assert(dst(landmark).value.get === landmarkValue)
+    assert(dst(address).value.get === addressValue)
+    assert(dst(longitude).value.get === longValue)
+    assert(dst(latitude).value.get === latValue)
   }
 
   test("Check for components names duplicate") {
     
   }
 
-  test("Check of teh dataflow connected to both end-points") {
+  test("Check of the dataflow connected to both end-points") {
     
   }
 
