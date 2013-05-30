@@ -12,7 +12,9 @@ package com.adal
  * @author Alex Evseenko
  *
  */
-class Dataflow {
+class Dataflow (implicit app: AdalApplication) {
+  app.add(this)
+
 
   // transform data from src to dst
   type Transform = (Container, Container) => Boolean

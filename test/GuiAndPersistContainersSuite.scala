@@ -18,6 +18,7 @@ import com.adal._
  */
 @RunWith(classOf[JUnitRunner])
 class GuiAndPersistContainersSuite extends FunSuite {
+  implicit object App extends AdalApplication
 
   val landmark = "landmark"
   val landmarkValue = "Home, sweet home"

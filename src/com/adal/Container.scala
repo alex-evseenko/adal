@@ -10,7 +10,8 @@ package com.adal
  * @author Alex Evseenko
  *
  */
-class Container(components: List[Component]) {
+class Container(components: List[Component]) (implicit app: AdalApplication) {
+  app.add(this)
 
   def <<(rx: Dataflow): Dataflow = {
     rx.dst = Option(this)
