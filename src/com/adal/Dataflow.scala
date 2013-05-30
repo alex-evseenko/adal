@@ -11,15 +11,15 @@ package com.adal
  *
  */
 object Dataflow {
-  def apply()(implicit app: AdalApplication) = new Dataflow
-}
-
-class Dataflow (implicit app: AdalApplication) {
-  app.add(this)
-
-
   // transform data from src to dst
   type Transform = (Container, Container) => Boolean
+
+  def apply(transform: Transform) (implicit app: AdalApplication) = new Dataflow(transform)
+}
+
+class Dataflow(transform: Dataflow.Transform) (implicit app: AdalApplication) {
+  app.add(this)
+
 
   var src: Option[Container] = None
   var dst: Option[Container] = None
@@ -37,7 +37,7 @@ class Dataflow (implicit app: AdalApplication) {
 
   def isConnected = (src.isDefined && dst.isDefined)
 
-  def doSend(transform: Transform): Boolean = {
+  def doSend(): Boolean = {
     // check end-points
     require(isConnected, "The dataflow endpoints are not defoned")
 

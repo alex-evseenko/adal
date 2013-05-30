@@ -13,6 +13,8 @@ import org.scalatest.junit.JUnitRunner
 import com.adal._
 
 /**
+ * Tests data propagation from a source- to target-container and a dataflow-transformation.
+ * 
  * @author Alex Evseenko
  *
  */
@@ -40,7 +42,7 @@ class GuiAndPersistContainersSuite extends FunSuite {
   test("Connect the dataflow to an abstract container") {
     val src = Container(createLandmarkComponents)
     val dst = Container(createPersistComponents)
-    val dmod = src >> Dataflow()
+    val dmod = src >> Dataflow(null)
 
     assert(!dmod.isConnected)
     
@@ -49,15 +51,10 @@ class GuiAndPersistContainersSuite extends FunSuite {
     assert(dmod.isConnected, "The dataflow "+dmod+" is not connected to containers.")
   }
 
-// TODO remove the propagation -- it's not the DSL capabilities but rather Core-framework
   test("Check data propagation via the dataflow") {
     val src = Container(createLandmarkComponents)
     val dst = Container(createPersistComponents)
-    val dmod = Dataflow()
-    
-    src >> dmod >> dst
-
-    dmod.doSend((src, dst) => {
+    val dmod = Dataflow((src, dst) => {
       src(landmark) >> dst(landmark)
       src(address)  >> dst(address)
       val ll = src(longAndLat).value.get.asInstanceOf[String].split(",")
@@ -65,6 +62,10 @@ class GuiAndPersistContainersSuite extends FunSuite {
       dst(latitude) << Option(ll(1).toDouble)
       true
     })
+    
+    src >> dmod >> dst
+
+    dmod.doSend
 
     assert(dst(landmark).value.get === landmarkValue)
     assert(dst(address).value.get === addressValue)

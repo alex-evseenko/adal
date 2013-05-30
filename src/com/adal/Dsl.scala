@@ -26,7 +26,14 @@ object Dsl {
 
   val dst = Container(List(Component(LANDMARK_FIELD), Component(ADDRESS_FIELD), Component(LONG_FIELD), Component(LAT_FIELD)))
 
-  val dmod = Dataflow() 
+  val dmod = Dataflow((src, dst) => {
+      src(LANDMARK) >> dst(LANDMARK_FIELD)
+      src(ADDRESS)  >> dst(ADDRESS_FIELD)
+      val ll = src(LONG_LAT).value.get.asInstanceOf[String].split(",")
+      dst(LONG_FIELD) << Option(ll(0).toDouble)
+      dst(LAT_FIELD) << Option(ll(1).toDouble)
+      true
+    }) 
 
   src >> dmod >> dst
 
