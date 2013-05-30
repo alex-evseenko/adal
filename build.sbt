@@ -7,10 +7,10 @@ scalaVersion := "2.10.1"
 //sbt.version=0.12.0
 
 // set the main Scala source directory to be <base>/src
-scalaSource in Compile <<= baseDirectory(_ / "adalDSL/src")
+scalaSource in Compile <<= baseDirectory(_ / "src")
 
 // set the Scala test source directory to be <base>/test
-scalaSource in Test <<= baseDirectory(_ / "adalDSL/test")
+scalaSource in Test <<= baseDirectory(_ / "test")
 
 // add a test dependency on ScalaCheck
 libraryDependencies ++= Seq(
