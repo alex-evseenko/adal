@@ -10,6 +10,10 @@ package com.adal
  * @author Alex Evseenko
  *
  */
+object Container {
+  def apply(components: List[Component]) (implicit app: AdalApplication) = new Container(components)
+}
+
 class Container(components: List[Component]) (implicit app: AdalApplication) {
   app.add(this)
 

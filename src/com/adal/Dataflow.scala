@@ -6,12 +6,14 @@
  */
 package com.adal
 
-
-
 /**
  * @author Alex Evseenko
  *
  */
+object Dataflow {
+  def apply()(implicit app: AdalApplication) = new Dataflow
+}
+
 class Dataflow (implicit app: AdalApplication) {
   app.add(this)
 

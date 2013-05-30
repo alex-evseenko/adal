@@ -32,15 +32,15 @@ class GuiAndPersistContainersSuite extends FunSuite {
   val latValue = 50.45111
 
   test("Create an abstract container") {
-    val c = new Container(createLandmarkComponents)
+    val c = Container(createLandmarkComponents)
     
     assert(c(landmark).value.get === landmarkValue)
   }
 
   test("Connect the dataflow to an abstract container") {
-    val src = new Container(createLandmarkComponents)
-    val dst = new Container(createPersistComponents)
-    val dmod = src >> new Dataflow 
+    val src = Container(createLandmarkComponents)
+    val dst = Container(createPersistComponents)
+    val dmod = src >> Dataflow()
 
     assert(!dmod.isConnected)
     
@@ -51,9 +51,9 @@ class GuiAndPersistContainersSuite extends FunSuite {
 
 // TODO remove the propagation -- it's not the DSL capabilities but rather Core-framework
   test("Check data propagation via the dataflow") {
-    val src = new Container(createLandmarkComponents)
-    val dst = new Container(createPersistComponents)
-    val dmod = new Dataflow 
+    val src = Container(createLandmarkComponents)
+    val dst = Container(createPersistComponents)
+    val dmod = Dataflow()
     
     src >> dmod >> dst
 
@@ -81,10 +81,10 @@ class GuiAndPersistContainersSuite extends FunSuite {
   }
 
   private def createLandmarkComponents = {
-    List(new Component(landmark) << Option(landmarkValue),
-         new Component(address) << Option(addressValue),
-         new Component(longAndLat) << Option(longAndLatValue))
+    List(Component(landmark) << Option(landmarkValue),
+         Component(address) << Option(addressValue),
+         Component(longAndLat) << Option(longAndLatValue))
   }
-  
-  private def createPersistComponents = List(new Component(landmark), new Component(address), new Component(longitude), new Component(latitude))
+
+  private def createPersistComponents = List(Component(landmark), Component(address), Component(longitude), Component(latitude))
 }

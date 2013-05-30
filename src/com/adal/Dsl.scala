@@ -17,16 +17,16 @@ object Dsl {
   val ADDRESS = "address"
   val LONG_LAT = "longAndLat"
     
-  val src = new Container(List(new Component(LANDMARK), new Component(ADDRESS), new Component(LONG_LAT)))
+  val src = Container(List(Component(LANDMARK), Component(ADDRESS), Component(LONG_LAT)))
 
   val LANDMARK_FIELD = "landmarkField"
   val ADDRESS_FIELD = "addressField"
   val LONG_FIELD = "longitude"
   val LAT_FIELD = "latitude"
 
-  val dst = new Container(List(new Component(LANDMARK_FIELD), new Component(ADDRESS_FIELD), new Component(LONG_FIELD), new Component(LAT_FIELD)))
+  val dst = Container(List(Component(LANDMARK_FIELD), Component(ADDRESS_FIELD), Component(LONG_FIELD), Component(LAT_FIELD)))
 
-  val dmod = new Dataflow 
+  val dmod = Dataflow() 
 
   src >> dmod >> dst
 

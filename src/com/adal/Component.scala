@@ -10,6 +10,10 @@ package com.adal
  * @author Alex Evseenko
  *
  */
+object Component {
+  def apply(name: String) = new Component(name)
+}
+
 class Component(val name: String) {
   var value: Option[Any] = None
 
