@@ -23,14 +23,19 @@ class Dataflow(transform: Dataflow.Transform) (implicit app: AdalApplication) {
 
   var src: Option[Container] = None
   var dst: Option[Container] = None
+
   def >>(d: Dataflow): Dataflow = this
   def <<(d: Dataflow): Dataflow = this
 
   def >>(c: Container): Dataflow = {
+    app.setRxEndpoint(c, this)
+
     dst = Option(c)
     this
   }
   def <<(c: Container): Dataflow = {
+    app.setTxEndpoint(c, this)
+
     src = Option(c)
     this
   }

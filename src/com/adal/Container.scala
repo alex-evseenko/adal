@@ -18,11 +18,15 @@ class Container(components: List[Component]) (implicit app: AdalApplication) {
   app.add(this)
 
   def <<(rx: Dataflow): Dataflow = {
+    app.setRxEndpoint(this, rx)
+
     rx.dst = Option(this)
     rx
   }
 
   def >>(tx: Dataflow): Dataflow = {
+    app.setTxEndpoint(this, tx)
+
     tx.src = Option(this)
     tx
   }
