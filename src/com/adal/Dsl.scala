@@ -6,6 +6,8 @@
  */
 package com.adal
 
+import com.adal.containers.GuiContainer
+
 /**
  * @author Alex Evseenko
  *
@@ -17,7 +19,7 @@ object Dsl {
   val ADDRESS = "address"
   val LONG_LAT = "longAndLat"
     
-  val src = Container(List(Component(LANDMARK), Component(ADDRESS), Component(LONG_LAT)))
+  val src = GuiContainer("LandmarkView", List(Component(LANDMARK), Component(ADDRESS), Component(LONG_LAT)))
 
   val LANDMARK_FIELD = "landmarkField"
   val ADDRESS_FIELD = "addressField"
