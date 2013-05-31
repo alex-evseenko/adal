@@ -4,13 +4,12 @@
  * Kiev, Ukraine.
  * 
  */
-package test
+package com.adal.test
 
 import org.scalatest.FunSuite
 import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
-
 import com.adal._
+import org.scalatest.junit.JUnitRunner
 
 /**
  * Tests data propagation from a source- to target-container and a dataflow-transformation.

@@ -17,7 +17,7 @@ object Dataflow {
   def apply(transform: Transform) (implicit app: AdalApplication) = new Dataflow(transform)
 }
 
-class Dataflow(transform: Dataflow.Transform) (implicit app: AdalApplication) {
+class Dataflow(transform: Dataflow.Transform) (implicit app: AdalApplication) extends AdalTopLevelArtifact {
   app.add(this)
 
 
@@ -41,6 +41,8 @@ class Dataflow(transform: Dataflow.Transform) (implicit app: AdalApplication) {
   }
 
   def isConnected = (src.isDefined && dst.isDefined)
+
+  override def generate = "\nDATAFLOW GENERATED HERE"
 
   def doSend(): Boolean = {
     // check end-points

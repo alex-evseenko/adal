@@ -14,7 +14,7 @@ object Container {
   def apply(components: List[Component]) (implicit app: AdalApplication) = new Container(components)
 }
 
-class Container(components: List[Component]) (implicit app: AdalApplication) {
+class Container(components: List[Component]) (implicit app: AdalApplication) extends AdalTopLevelArtifact {
   app.add(this)
 
   def <<(rx: Dataflow): Dataflow = {
@@ -30,6 +30,8 @@ class Container(components: List[Component]) (implicit app: AdalApplication) {
     tx.src = Option(this)
     tx
   }
+
+  override def generate = "\nCONTAINER GENERATED HERE"
 
   /**
    * Get the named component from the container
