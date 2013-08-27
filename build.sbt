@@ -14,7 +14,8 @@ scalaSource in Test <<= baseDirectory(_ / "test")
 
 // add a test dependency on ScalaCheck
 libraryDependencies ++= Seq(
-	"org.scalatest" %% "scalatest" % "1.9.1" % "test"
+	"org.scalatest" %% "scalatest" % "1.9.1" % "test",
+	"org.specs2" %% "specs2" % "2.1.1" % "test"
 )
 
 libraryDependencies += "junit" % "junit" % "4.11" % "test"
