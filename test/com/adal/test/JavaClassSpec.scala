@@ -30,17 +30,18 @@ class JavaClassSpec extends SpecificationWithJUnit { def is = s2"""
   
   """
 
-  val javaClass = Source.fromFile("C:/Projects/git/adal/test/com/adal/test/JavaClass.java").mkString.trim
+//  val src = Source.fromFile("test/com/adal/test/JavaClass.java").mkString.trim
+  val src = JavaClassSI.defaultTemplate
 
-  def e1 = javaClass must startWith ("package")
-  def e2 = javaClass must contain ("import")
-  def e3 = javaClass must contain ("class")
-  def e4 = javaClass must contain ("JavaClass")
-  def e5 = javaClass must contain ("{")
+  def e1 = src must startWith ("package")
+  def e2 = src must contain ("import")
+  def e3 = src must contain ("class")
+  def e4 = src must contain ("JavaClass")
+  def e5 = src must contain ("{")
   def e6 = pending
   def e7 = pending
   def e8 = pending
-  def e9 = javaClass must endWith ("}")
+  def e9 = src must endWith ("}")
   def e10 = {
 	val compiler = ToolProvider.getSystemJavaCompiler()
 	
